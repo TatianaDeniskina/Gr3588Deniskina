@@ -1,6 +1,6 @@
 ﻿using System;
 
-int num = ReadData("Введите число: //вводим число
+int num = ReadData("Введите число: ");//вводим число
 int pow = ReadData("Введите степень: ");//вводим степень
 int res = Pow(num,pow);//считаем значение
 
