@@ -2,27 +2,20 @@
 
 int row = ReadData("Введите количество строк: ");
 int colum = ReadData("Введите количество столбцов: ");
-int[,]arr2D =Fill2DArray(row, colum, 10,99);
+int[,]arr2D =Fill2DArray(row, colum, 10, 99);
 Print2DArray(arr2D);
-Update2DArray(arr2D);
-Print2DArray(arr2D);
+int sumDiag = CalcDiag(arr2D);
+PrintData("Сумма элементов главной диагонали равна: "+sumDiag);
 
+void PrintData(string res)//метод вывода
+ {
+    Console.WriteLine(res);
+ }
 
 int ReadData(string msg)//метод ввода
 {
    Console.WriteLine(msg);
    return int.Parse(Console.ReadLine() ?? "0");
-}
-void Update2DArray(int[,]matrix)
-{
-    for (int i =0; i< matrix.GetLength(0); i=i+2)
-    {
-        for(int j =0; j< matrix.GetLength(1); j=j+2)
-        {
-            matrix[i,j]=matrix[i,j]*matrix[i,j];
-        }
-        Console.WriteLine();
-    }
 }
 int[,] Fill2DArray(int countRow, int countColum, int topBorder, int downBorder)//метод генерации 2мерного массива
 {
@@ -48,4 +41,14 @@ void Print2DArray(int[,]matrix)
         Console.WriteLine();
     }
 }
+int CalcDiag(int[,]matrix)
+{
+    int res=0;
+    int min = matrix.GetLength(0)<matrix.GetLength(1)?matrix.GetLength(0):matrix.GetLength(1);
 
+    for (int i =0; i< min; i++)
+    {
+       res+=matrix[i,i];
+    }
+    return res;
+}
